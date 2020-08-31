@@ -7,14 +7,14 @@
 
         <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500" rel="stylesheet">
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/Chart.min.css">
+        
 
         <script src="js/jquery-3.4.1.min.js"></script>
-        <script src="js/colourMap.js"></script>
-        <script src="js/contourPoint.js"></script>
         <script src="js/math.js"></script>
-        <script src="js/contourPlot.js"></script>
+        <script src="js/Chart.min.js"></script>
 
-        <title>ContourPlot | Generate Your Own Plot</title>
+        <title>Generic PID Controller Tuner | Tune Your PID Controller</title>
         
     </head>
     <body>
@@ -22,130 +22,94 @@
         <b>Click</b> and <b>Hold</b> to Generate Points!
         </br>
         <button id="btnResetCanvas" type="button" href='javascript:void();' onclick="resetCanvas(event)">Click to Reset Canvas</button>
+        <canvas id="chart_canvas"></canvas>
     </div>
     <canvas id="canvas" onmousedown="createPointAtMouse(event)" onmouseup="renderContourPoints(event)" onmousemove="showContourVal(event)" onload="init()"></canvas>
         
         <script>
             
-            var c = document.getElementById("canvas");
-            var ctx = c.getContext("2d");
-            var cPlot = new contourPlot([], ctx, new colourMap("temp-100"));
-            
-            function sizeCanvas() {
-                // get heading items
-                var headingItems = document.getElementsByClassName("heading");
-                totalHeight = 0;
-                for (var i=0; i<headingItems.length; i++) {
-                    totalHeight = totalHeight + headingItems[i].offsetHeight;
-                }
-                c.width = window.innerWidth;
-                c.height = window.innerHeight - totalHeight;
-            }
-                       
-            function onWindowResize() {
-                sizeCanvas();
-                clearCanvas();
-                drawPoints();
-            }
-            window.onresize = onWindowResize;
-            
-            sizeCanvas();
-            var points = [];
-                                        
-            function clearCanvas() {
-                ctx.clearRect(0,0,c.width,c.height);
-            }
-            
-            function resetCanvas() {
-                points = [];
-                clearCanvas();
-            }
-            
-            function drawPoints() {
-                // draw all points
-                for (i=0; i<points.length; i++) {
-                    points[i].colourIn();
-                }
-            }
-            
-            function createPointAtMouse(e) {
-                // Get x, y coordinates
-                const rect = c.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const clickY = e.clientY - rect.top;
-                createPoint(clickX,clickY);
-            }
-                                        
-            function createPoint(x, y) {
-                // Create new point
-                console.log("Creating new point at (" + x + ", " + y + ")");
-                cPoint = new contourPoint(x, y, ctx, new colourMap("temp-50"));
-                points.push(cPoint);
-                    clearCanvas();
-                    drawPoints();
-                
-                growPointTimer = setInterval(function(){
-                    // increment size of new point
-                    cPoint.growPoint();
-                    clearCanvas();
-                    drawPoints();
-                }, 100);
-            }
-            function renderContourPoints(e) {
-                e.preventDefault();
-                clearInterval(growPointTimer);
-                renderContourPlot(e);
-            }
-            
-            function showContourVal(e) {
-                console.log("showing contour value...");
-                // Get x, y coordinates
-                const rect = c.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const clickY = e.clientY - rect.top;
-                console.log(cPlot.getContourVal(clickX, clickY));
-            }
-            function renderContourPlot(e) {
-                console.log("Rendering contour plot now...");
-                cPlot = new contourPlot(points, ctx, new colourMap("temp-100"));
-                cPlot.drawPlot();
-            }
-            
-            // Set up touch events for mobile, etc
-            c.addEventListener("touchstart", function (e) {
-                mousePos = getTouchPos(c, e);
-                var touch = e.touches[0];
-                var mouseEvent = new MouseEvent("mousedown", {
-                    clientX: touch.clientX,
-                    clientY: touch.clientY
-                });
-                c.dispatchEvent(mouseEvent);
-            }, false);
-            c.addEventListener("touchend", function (e) {
-                var mouseEvent = new MouseEvent("mouseup", {});
-                c.dispatchEvent(mouseEvent);
-            }, false);
-            c.addEventListener("touchmove", function (e) {
-                var touch = e.touches[0];
-                var mouseEvent = new MouseEvent("mousemove", {
-                    clientX: touch.clientX,
-                    clientY: touch.clientY
-                });
-                c.dispatchEvent(mouseEvent);
-            }, false);
+            	var canvas = document.getElementById('chart_canvas');
+                var ctx = canvas.getContext('2d');
 
-            // Get the position of a touch relative to the canvas
-            function getTouchPos(canvasDom, touchEvent) {
-                var rect = canvasDom.getBoundingClientRect();
-                return {
-                    x: touchEvent.touches[0].clientX - rect.left,
-                    y: touchEvent.touches[0].clientY - rect.top
-                };
-            }
-            
-            c.addEventListener("contextmenu", function (e) {
-                e.preventDefault();
-            }, false);
+                // Generate random data to plot
+                var DATA_POINT_NUM = 58;
+                var data = {
+                    labels: [],
+                    datasets: [
+                        {
+                            data: [],
+                        },
+                    ]
+                }
+                for (var i=0; i<DATA_POINT_NUM; i++) {
+                    data.datasets[0].data.push({ 	x: i,
+                                                    y: Math.random()*10
+                                                });
+                    data.labels.push(String.fromCharCode(65+i));
+                }
+
+                function getXAxisLabel(value) {
+                    try {
+                        var xMin = lineChart.options.scales.xAxes[0].ticks.min;
+                    } catch(e) {
+                        var xMin = undefined;
+                    }
+                    if (xMin === value) {
+                        return '';
+                    } else {
+                        return data.labels[value];
+                    }
+                }
+
+                var lineChart = new Chart(ctx, {
+                    type: 'line',
+                    data: data,
+                    options: { 
+                        animation: false,
+                        scales: {
+                            xAxes: [{
+                                type: 'linear',
+                                position: 'bottom',
+                                ticks: {
+                                    min: 0,
+                                    max: 10,
+                                    callback: getXAxisLabel, // function(value) { return data.labels[value]; },
+                                    autoSkip: false,
+                                    maxRotation: 0,
+
+                                },
+                            }]
+                        }
+                    }
+                });
+
+
+
+                var xMin = 0;					// Starting minimum value for the x-axis
+                var xLength = 10;				// Length of the x-axis
+                var animationDuration = 5000;	// Duration of animation in ms
+
+                // Calculate animation properties
+                var framesPerSec = 100;
+                var frameTime = 10000/framesPerSec;
+                var xStep = (DATA_POINT_NUM-xMin+xLength)/(animationDuration/1000*framesPerSec);
+
+                function nextFrame() {
+                    var xMax = xMin+xLength;
+                    if (xMax < DATA_POINT_NUM-1) {
+                        if (xMax+xStep > DATA_POINT_NUM-1) {
+                            xMax = DATA_POINT_NUM-1;
+                            xMin = xMax-xLength;
+                        }
+                        lineChart.options.scales.xAxes[0].ticks.min = xMin;
+                        lineChart.options.scales.xAxes[0].ticks.max = xMax;
+                        lineChart.update();
+                        setTimeout(nextFrame, frameTime);
+                        xMin += 0.1;
+                    }
+                }
+
+                nextFrame();
         </script>
     </body>
 </html>
