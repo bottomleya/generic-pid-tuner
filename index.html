@@ -22,94 +22,94 @@
         <b>Click</b> and <b>Hold</b> to Generate Points!
         </br>
         <button id="btnResetCanvas" type="button" href='javascript:void();' onclick="resetCanvas(event)">Click to Reset Canvas</button>
-        <canvas id="chart_canvas"></canvas>
     </div>
-    <canvas id="canvas" onmousedown="createPointAtMouse(event)" onmouseup="renderContourPoints(event)" onmousemove="showContourVal(event)" onload="init()"></canvas>
+    
+    <canvas id="chart_canvas"></canvas>
         
         <script>
             
-            	var canvas = document.getElementById('chart_canvas');
-                var ctx = canvas.getContext('2d');
+            var canvas = document.getElementById('chart_canvas');
+            var ctx = canvas.getContext('2d');
 
-                // Generate random data to plot
-                var DATA_POINT_NUM = 58;
-                var data = {
-                    labels: [],
-                    datasets: [
-                        {
-                            data: [],
-                        },
-                    ]
+            // Generate random data to plot
+            var DATA_POINT_NUM = 58;
+            var data = {
+                labels: [],
+                datasets: [
+                    {
+                        data: [],
+                    },
+                ]
+            }
+            for (var i=0; i<DATA_POINT_NUM; i++) {
+                data.datasets[0].data.push({ 	x: i,
+                                                y: Math.random()*10
+                                            });
+                data.labels.push(String.fromCharCode(65+i));
+            }
+
+            function getXAxisLabel(value) {
+                try {
+                    var xMin = lineChart.options.scales.xAxes[0].ticks.min;
+                } catch(e) {
+                    var xMin = undefined;
                 }
-                for (var i=0; i<DATA_POINT_NUM; i++) {
-                    data.datasets[0].data.push({ 	x: i,
-                                                    y: Math.random()*10
-                                                });
-                    data.labels.push(String.fromCharCode(65+i));
+                if (xMin === value) {
+                    return '';
+                } else {
+                    return data.labels[value];
                 }
+            }
 
-                function getXAxisLabel(value) {
-                    try {
-                        var xMin = lineChart.options.scales.xAxes[0].ticks.min;
-                    } catch(e) {
-                        var xMin = undefined;
-                    }
-                    if (xMin === value) {
-                        return '';
-                    } else {
-                        return data.labels[value];
-                    }
-                }
+            var lineChart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: { 
+                    animation: false,
+                    scales: {
+                        xAxes: [{
+                            type: 'linear',
+                            position: 'bottom',
+                            ticks: {
+                                min: 0,
+                                max: 10,
+                                callback: getXAxisLabel, // function(value) { return data.labels[value]; },
+                                autoSkip: false,
+                                maxRotation: 0,
 
-                var lineChart = new Chart(ctx, {
-                    type: 'line',
-                    data: data,
-                    options: { 
-                        animation: false,
-                        scales: {
-                            xAxes: [{
-                                type: 'linear',
-                                position: 'bottom',
-                                ticks: {
-                                    min: 0,
-                                    max: 10,
-                                    callback: getXAxisLabel, // function(value) { return data.labels[value]; },
-                                    autoSkip: false,
-                                    maxRotation: 0,
-
-                                },
-                            }]
-                        }
-                    }
-                });
-
-
-
-                var xMin = 0;					// Starting minimum value for the x-axis
-                var xLength = 10;				// Length of the x-axis
-                var animationDuration = 5000;	// Duration of animation in ms
-
-                // Calculate animation properties
-                var framesPerSec = 100;
-                var frameTime = 10000/framesPerSec;
-                var xStep = (DATA_POINT_NUM-xMin+xLength)/(animationDuration/1000*framesPerSec);
-
-                function nextFrame() {
-                    var xMax = xMin+xLength;
-                    if (xMax < DATA_POINT_NUM-1) {
-                        if (xMax+xStep > DATA_POINT_NUM-1) {
-                            xMax = DATA_POINT_NUM-1;
-                            xMin = xMax-xLength;
-                        }
-                        lineChart.options.scales.xAxes[0].ticks.min = xMin;
-                        lineChart.options.scales.xAxes[0].ticks.max = xMax;
-                        lineChart.update();
-                        setTimeout(nextFrame, frameTime);
-                        xMin += 0.1;
+                            },
+                        }]
                     }
                 }
+            });
 
-                nextFrame();
+
+
+            var xMin = 0;					// Starting minimum value for the x-axis
+            var xLength = 100;				// Length of the x-axis
+            var animationDuration = 5000;	// Duration of animation in ms
+
+            // Calculate animation properties
+            var framesPerSec = 10;
+            var frameTime = 1000/framesPerSec;
+            var xStep = (DATA_POINT_NUM-xMin+xLength)/(animationDuration/1000*framesPerSec);
+
+            function nextFrame() {
+                var xMax = xMin+xLength;
+                if (xMax < DATA_POINT_NUM-1) {
+                    if (xMax+xStep > DATA_POINT_NUM-1) {
+                        xMax = DATA_POINT_NUM-1;
+                        xMin = xMax-xLength;
+                    }
+                    lineChart.options.scales.xAxes[0].ticks.min = xMin;
+                    lineChart.options.scales.xAxes[0].ticks.max = xMax;
+                    lineChart.update();
+                    setTimeout(nextFrame, frameTime);
+                    xMin += 0.1;
+                }
+            }
+
+            nextFrame();
         </script>
     </body>
 </html>
