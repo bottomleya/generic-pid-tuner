@@ -45,6 +45,11 @@ button {
   border-radius: 12px;
 }
 
+label {
+  font-weight:200;
+  line-height:1;
+}
+
 button:hover {
   background-color: #adadad;
   color: #5e5e5e;
