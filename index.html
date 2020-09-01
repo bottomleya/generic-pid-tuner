@@ -57,7 +57,7 @@
                 ]
             };
             function addDataPoint() {
-                data.datasets[0].data.push({Math.random()*10});
+                data.datasets[0].data.push(Math.random()*10);
                 data.labels.push("");
                 lineChart.data.datasets[0].data = data;
                 lineChart.update();
