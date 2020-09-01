@@ -62,11 +62,11 @@
                 ]
             };
             function addDataPoint() {
-                maxDataPoints = 100;
+                maxDataPoints = 1000;
                 setPoint = 25;
                 // get most recent data point
                 currVal = data.datasets[0].data.slice(-1)[0]
-                newVal = currVal + 0.01 * (setPoint - currVal);
+                newVal = currVal + 0.1 * (setPoint - currVal);
                 // newVal = Math.random()*10;
                 // add data
                 data.datasets[0].data.push(newVal);
