@@ -48,6 +48,7 @@ button {
 label {
   font-weight:200;
   line-height:1;
+  font-size: 14px;
 }
 
 button:hover {
