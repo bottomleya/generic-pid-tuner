@@ -44,7 +44,8 @@
                                 "setPoint": 25,
                                 "controller": 0};
             
-            for (key in userSettings) {
+            for (var key in userSettings) {
+                console.log(document.getElementById(key).defaultValue);
                 document.getElementById(key).value = parseInt(document.getElementById(key).defaultValue);
             }
             
