@@ -132,7 +132,7 @@
                 }
             }
             function updateDynamics(currVal, controller) {
-                return currVal + (controller + 0.0001 * (35 - currVal)) * 0.1;
+                return currVal + (-controller + 0.0001 * (35 - currVal)) * 0.1;
             }
             function systemDynamics() {
                 // get most recent data points
@@ -142,12 +142,13 @@
                 var error = setpoint - currVal;
                 accumulatedError+=error;
                 // calculate controller action
-                var controller = updateController(error);
+                var updatedController = updateController(error);
                 // apply system dynamics
                 // newVal = Math.random()*10;
                 // newVal = currVal + 0.1 * (setPoint - currVal);
                 // newVal = currVal + 0.05 * controller
-                newVal = updateDynamics(currVal, controller);
+                newVal = updateDynamics(currVal, updatedController);
+                console.log(newVal);
                 return newVal
             }
             function addDataPoint() {
