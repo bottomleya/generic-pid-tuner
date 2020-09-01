@@ -156,10 +156,13 @@
                 var maxDataPoints = userSettings["maxDataPoints"];
                 var setPoint = userSettings["setPoint"];
                 var controller = userSettings["controller"];
+                console.log(userSettings);
                 data.datasets[1].data.push(setPoint);
                 data.datasets[2].data.push(controller);
+                console.log(controller);
                 // calculate system dynamics
                 var newVal = systemDynamics();
+                console.log(controller);
                 // add data
                 data.datasets[0].data.push(newVal);
                 data.labels.push("");
