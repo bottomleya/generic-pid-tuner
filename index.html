@@ -123,7 +123,7 @@
                 //manualOverride = false; // placeholder for user selectable checkbox
                 var kp = userSettings["kp"];
                 var ki = userSettings["ki"];
-                var output = kp * error + kp*ki*(accumulatedError);
+                var output = -(kp * error + kp*ki*(accumulatedError));
                 if (!manualOverride) {
                     document.getElementById("controller").value = output;
                     return output
