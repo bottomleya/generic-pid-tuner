@@ -30,7 +30,9 @@
             
             var canvas = document.getElementById('chart_canvas');
             var ctx = canvas.getContext('2d');
-
+            
+            Chart.defaults.global.defaultFontColor = "#fff";
+            
             // Generate random data to plot
             var data = {
                 labels: [""],
@@ -80,7 +82,6 @@
             });
 
             window.setInterval(function(){
-                console.log(data.datasets[0].data);
                 addDataPoint();
             }, 500);
 
