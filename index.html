@@ -28,7 +28,8 @@
         <input type="number" id="setPoint" name="setPoint" min="1" max="100" defaultValue="25">
         </br>
         <label for="controller">Controller:</label>
-        <input type="number" id="controller" name="controller" min="0" max="100" defaultValue="0">
+        <input type="number" id="controller" name="controller" min="0" max="100" defaultValue="0" disabled=true>
+        <input type="checkbox" id="manaulOverride" name="manualOverride" onclick="overrideController()">
         <label for="kp">Proportional Gain:</label>
         <input type="number" id="kp" name="kp" min="0" max="1" defaultValue="0">
         <label for="ki">Integral Gain:</label>
@@ -40,7 +41,7 @@
     <canvas id="chart_canvas"></canvas>
         
         <script>
-            
+            var manualOverride = false;
             var canvas = document.getElementById('chart_canvas');
             var ctx = canvas.getContext('2d');
             
@@ -106,10 +107,12 @@
                     userSettings[key] = document.getElementById(key).value;
                 }
             }
-            
+            function overrideController() {
+                if manualOverride {manualOverride = false} else {manualOverride = true};
+            }
             // calculate controller action for PID controller (ideal)
             function updateController(error) {
-                manualOverride = false; // placeholder for user selectable checkbox
+                //manualOverride = false; // placeholder for user selectable checkbox
                 var kp = userSettings["kp"];
                 var ki = userSettings["ki"];
                 var output = kp * error + kp*ki*(accumulatedError);
