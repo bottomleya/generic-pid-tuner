@@ -122,10 +122,9 @@
             function updateController(error) {
                 var kp = userSettings["kp"];
                 var ki = userSettings["ki"];
-                // calculate controller action using ideal equation
-                var output = -(kp * error + kp*ki*(accumulatedError));
-                console.log(manualOverride);
                 if (!manualOverride) {
+                    // calculate controller action using ideal equation
+                    var output = -(kp * error + kp*ki*(accumulatedError));
                     document.getElementById("controller").value = output;
                     return output
                 } else {
@@ -144,7 +143,6 @@
                 accumulatedError+=error;
                 // calculate controller action
                 var controller = updateController(error);
-                console.log(controller);
                 // apply system dynamics
                 // newVal = Math.random()*10;
                 // newVal = currVal + 0.1 * (setPoint - currVal);
@@ -155,11 +153,11 @@
             function addDataPoint() {
                 // read values from user inputs
                 updateInputValues();
-                maxDataPoints = userSettings["maxDataPoints"];
-                setPoint = userSettings["setPoint"];
-                controller = userSettings["controller"];
+                var maxDataPoints = userSettings["maxDataPoints"];
+                var setPoint = userSettings["setPoint"];
+                var controller = userSettings["controller"];
                 // calculate system dynamics
-                newVal = systemDynamics();
+                var newVal = systemDynamics();
                 // add data
                 data.datasets[0].data.push(newVal);
                 data.datasets[1].data.push(setPoint);
