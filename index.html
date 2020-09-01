@@ -85,7 +85,16 @@
                 data: data,
                 options: { 
                     animation: false,
-                    showLines: true
+                    showLines: true,
+                    scales: {
+                        yAxes: [{
+                            display: true,
+                            ticks: {
+                                suggestedMin: 0,
+                                max: 100
+                            }
+                        }]
+
                 }
             });
 
