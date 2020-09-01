@@ -124,6 +124,7 @@
                 var ki = userSettings["ki"];
                 // calculate controller action using ideal equation
                 var output = -(kp * error + kp*ki*(accumulatedError));
+                console.log(manualOverride);
                 if (!manualOverride) {
                     document.getElementById("controller").value = output;
                     return output
@@ -143,6 +144,7 @@
                 accumulatedError+=error;
                 // calculate controller action
                 var controller = updateController(error);
+                console.log(controller);
                 // apply system dynamics
                 // newVal = Math.random()*10;
                 // newVal = currVal + 0.1 * (setPoint - currVal);
