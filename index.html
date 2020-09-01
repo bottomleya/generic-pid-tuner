@@ -100,13 +100,13 @@
                     userSettings[key] = document.getElementById(key).value;
                 }
             }
-            function updateController(var error) {
+            function updateController(error) {
                 var kc = 0.01;
                 var ki = 1;
                 var output = kc * error + kc*ki*(accumulatedError);
                 return output
             }
-            function updateDynamics(var currVal, var controller) {
+            function updateDynamics(currVal, controller) {
                 return currVal + 0.05 * Math.pow(controller, 2);
             }
             function systemDynamics() {
