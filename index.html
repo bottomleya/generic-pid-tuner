@@ -59,7 +59,7 @@
             Chart.defaults.global.defaultFontColor = "#fff";
             
             
-            // Generate random data to plot
+            // template for data
             var data = {
                 labels: [""],
                 datasets: [
@@ -106,8 +106,10 @@
                     userSettings[key] = document.getElementById(key).value;
                 }
             }
+            
+            // calculate controller action for PID controller (ideal)
             function updateController(error) {
-                manualOverride = false;
+                manualOverride = false; // placeholder for user selectable checkbox
                 var kp = userSettings["kp"];
                 var ki = userSettings["ki"];
                 var output = kp * error + kp*ki*(accumulatedError);
@@ -119,7 +121,7 @@
                 }
             }
             function updateDynamics(currVal, controller) {
-                return currVal + 0.05 * Math.pow(controller, 2);
+                return currVal + 0.01 * Math.pow(controller, 2);
             }
             function systemDynamics() {
                 // get most recent data points
