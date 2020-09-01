@@ -26,6 +26,9 @@
         </br>
         <label for="setPoint">Setpoint for System Dynamics:</label>
         <input type="number" id="setPoint" name="setPoint" min="1" max="100" defaultValue="25">
+        </br>
+        <label for="controller">Controller:</label>
+        <input type="number" id="controller" name="controller" min="0" max="100" defaultValue="0">
 
         
     </div>
@@ -37,10 +40,13 @@
             var canvas = document.getElementById('chart_canvas');
             var ctx = canvas.getContext('2d');
             
-            document.getElementById("maxDataPoints").value = 1000;
-            document.getElementById("setPoint").value = 25;
             var userSettings = {"maxDataPoints": 1000,
-                                "setPoint": 25};
+                                "setPoint": 25,
+                                "controller": 0};
+            
+            for (key in userSettings) {
+                document.getElemtnById(key).value = document.getElementById(key).defaultValue;
+            }
             
             Chart.defaults.global.defaultFontColor = "#fff";
             
@@ -72,6 +78,18 @@
                         pointRadius: 0,
                         pointBorderWidth: 0,
                         data: [25],
+                    },
+                    {
+                        label: "Controller",
+                        fill: false,
+                        lineTension: 0.1,
+                        borderColor: "rgba(168, 50, 50, 1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        pointRadius: 0,
+                        pointBorderWidth: 0,
+                        data: [0],
                     }
                 ]
             };
@@ -80,15 +98,22 @@
                     userSettings[key] = document.getElementById(key).value;
                 }
             }
-            
+            function systemDynamics() {
+                // get most recent data points
+                currVal = data.datasets[0].data.slice(-1)[0]
+                controller = data.datasets[2].data.slice(-1)[0]
+                // apply system dynamics
+                // newVal = Math.random()*10;
+                // newVal = currVal + 0.1 * (setPoint - currVal);
+                newVal = currVal + 0.05 * controller
+                return newVal
+            }
             function addDataPoint() {
                 updateInputValues();
                 maxDataPoints = userSettings["maxDataPoints"];
                 setPoint = userSettings["setPoint"];
-                // get most recent data point
-                currVal = data.datasets[0].data.slice(-1)[0]
-                newVal = currVal + 0.1 * (setPoint - currVal);
-                // newVal = Math.random()*10;
+                // calculate system dynamics
+                newVal = systemDynamics();
                 // add data
                 data.datasets[0].data.push(newVal);
                 data.datasets[1].data.push(setPoint);
