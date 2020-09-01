@@ -108,7 +108,14 @@
                 }
             }
             function overrideController() {
-                if (manualOverride) {manualOverride = false} else {manualOverride = true};
+                if (manualOverride) {
+                    manualOverride = false;
+                    document.getElementById("controller").disabled = true;
+                } else {
+                    manualOverride = true;
+                    document.getElementById("controller").disabled = false;
+                };
+                
             }
             // calculate controller action for PID controller (ideal)
             function updateController(error) {
