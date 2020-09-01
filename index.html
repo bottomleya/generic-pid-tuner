@@ -121,7 +121,7 @@
                 }
             }
             function updateDynamics(currVal, controller) {
-                return currVal + 0.01 * Math.pow(controller, 2);
+                return currVal - 0.01 * Math.pow(controller, 2) + 5;
             }
             function systemDynamics() {
                 // get most recent data points
