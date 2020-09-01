@@ -22,13 +22,13 @@
         <b>Generic PID Controller Tuner</b>
         </br>
         <label for="maxDataPoints">Number of data points displayed:</label>
-        <input type="number" id="maxDataPoints" name="maxDataPoints" min=1 max=100 defaultValue=1000>
+        <input type="number" id="maxDataPoints" name="maxDataPoints" min="1" max="1000" defaultValue="1000">
         </br>
         <label for="setPoint">Setpoint for System Dynamics:</label>
-        <input type="number" id="setPoint" name="setPoint" min=1 max=100 defaultValue=25>
+        <input type="number" id="setPoint" name="setPoint" min="1" max="100" defaultValue="25">
         </br>
         <label for="controller">Controller:</label>
-        <input type="number" id="controller" name="controller" min=0 max=100 defaultValue=0>
+        <input type="number" id="controller" name="controller" min="0" max="100" defaultValue="0">
 
         
     </div>
@@ -45,7 +45,7 @@
                                 "controller": 0};
             
             for (key in userSettings) {
-                document.getElementById(key).value = document.getElementById(key).defaultValue;
+                document.getElementById(key).value = parseInt(document.getElementById(key).defaultValue);
             }
             
             Chart.defaults.global.defaultFontColor = "#fff";
