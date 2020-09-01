@@ -101,8 +101,8 @@
             }
             function systemDynamics() {
                 // get most recent data points
-                currVal = data.datasets[0].data.slice(-1)[0]
-                controller = data.datasets[2].data.slice(-1)[0]
+                var currVal = data.datasets[0].data.slice(-1)[0]
+                var controller = data.datasets[2].data.slice(-1)[0]
                 // apply system dynamics
                 // newVal = Math.random()*10;
                 // newVal = currVal + 0.1 * (setPoint - currVal);
