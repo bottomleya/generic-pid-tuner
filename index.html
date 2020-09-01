@@ -107,10 +107,16 @@
                 }
             }
             function updateController(error) {
+                manualOverride = false;
                 var kp = userSettings["kp"];
                 var ki = userSettings["ki"];
                 var output = kp * error + kp*ki*(accumulatedError);
-                return output
+                if (!manualOverride) {
+                    document.getElementById("controller").value = output;
+                    return output
+                } else {
+                    return document.getElementById("controller").value
+                }
             }
             function updateDynamics(currVal, controller) {
                 return currVal + 0.05 * Math.pow(controller, 2);
@@ -132,6 +138,7 @@
                 return newVal
             }
             function addDataPoint() {
+                // read values from user inputs
                 updateInputValues();
                 maxDataPoints = userSettings["maxDataPoints"];
                 setPoint = userSettings["setPoint"];
