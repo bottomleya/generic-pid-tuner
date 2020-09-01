@@ -156,12 +156,12 @@
                 var maxDataPoints = userSettings["maxDataPoints"];
                 var setPoint = userSettings["setPoint"];
                 var controller = userSettings["controller"];
+                data.datasets[1].data.push(setPoint);
+                data.datasets[2].data.push(controller);
                 // calculate system dynamics
                 var newVal = systemDynamics();
                 // add data
                 data.datasets[0].data.push(newVal);
-                data.datasets[1].data.push(setPoint);
-                data.datasets[2].data.push(controller);
                 data.labels.push("");
                 // limit to maximum number of data points
                 if (data.datasets[0].data.length > maxDataPoints) {
