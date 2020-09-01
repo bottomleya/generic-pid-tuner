@@ -45,8 +45,7 @@
                                 "controller": 0};
             window.onload = function initializeUserSettings() {
                 for (var key in userSettings) {
-                    console.log(document.getElementById(key).defaultValue);
-                    document.getElementById(key).value = parseInt(document.getElementById(key).defaultValue);
+                    document.getElementById(key).value = userSettings[key];
                 }
             }
             
