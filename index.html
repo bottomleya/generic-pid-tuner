@@ -36,6 +36,7 @@
             
             Chart.defaults.global.defaultFontColor = "#fff";
             
+            
             // Generate random data to plot
             var data = {
                 labels: [""],
@@ -44,20 +45,30 @@
                         label: "System Dynamics",
                         fill: false,
                         lineTension: 0.8,
-                        backgroundColor: "rgba(75,192,192,0.4)",
-                        borderColor: "rgba(75,192,192,1)",
+                        backgroundColor: "rgba(226, 235, 52,0.4)",
+                        borderColor: "rgba(226, 235, 52,1)",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
-                        pointBorderColor: "rgba(75,192,192,1)",
+                        pointBorderColor: "rgba(226, 235, 52,1)",
                         pointBorderWidth: 0.1,
                         pointHoverRadius: 2,
-                        pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                        pointHoverBackgroundColor: "rgba(226, 235, 52,1)",
                         pointHoverBorderColor: "rgba(220,220,220,1)",
                         pointHoverBorderWidth: 0.5,
                         pointRadius: 2,
                         pointHitRadius: 10,
                         data: [0],
+                    },
+                    {
+                        label: "Setpoint",
+                        fill: false,
+                        lineTension: 0.8,
+                        borderColor: "rgba(52, 235, 232, 1)",
+                        borderCapStyle: 'butt',
+                        borderDash: [],
+                        borderDashOffset: 0.0,
+                        data: [25],
                     }
                 ]
             };
@@ -70,11 +81,14 @@
                 // newVal = Math.random()*10;
                 // add data
                 data.datasets[0].data.push(newVal);
+                data.datasets[1].data.push(setPoint);
                 data.labels.push("");
                 // limit to maximum number of data points
                 if (data.datasets[0].data.length > maxDataPoints) {
-                    data.datasets[0].data.shift();
-                    data.labels.shift();
+                    for (var i=0; i<data.datasets.length; i++) {
+                        data.datasets[i].data.shift();
+                        data.labels.shift();
+                    }
                 }
                 // update chart
                 lineChart.data = data;
@@ -86,6 +100,7 @@
                 options: { 
                     animation: false,
                     showLines: true,
+                    events: [],
                     scales: {
                         yAxes: [{
                             display: true,
