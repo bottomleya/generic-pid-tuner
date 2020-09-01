@@ -120,19 +120,19 @@
             }
             // calculate controller action for PID controller (ideal)
             function updateController(error) {
-                //manualOverride = false; // placeholder for user selectable checkbox
                 var kp = userSettings["kp"];
                 var ki = userSettings["ki"];
+                // calculate controller action using ideal equation
                 var output = -(kp * error + kp*ki*(accumulatedError));
                 if (!manualOverride) {
                     document.getElementById("controller").value = output;
                     return output
                 } else {
-                    return document.getElementById("controller").value
+                    return document.getElementById("controller").value;
                 }
             }
             function updateDynamics(currVal, controller) {
-                return currVal + (controller + 0.001 * (35 - currVal)) * 0.1;
+                return currVal + (controller + 0.0001 * (35 - currVal)) * 0.1;
             }
             function systemDynamics() {
                 // get most recent data points
