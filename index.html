@@ -48,6 +48,7 @@
                     document.getElementById(key).value = userSettings[key];
                 }
             }
+            var accumulatedError = 0;
             
             Chart.defaults.global.defaultFontColor = "#fff";
             
@@ -99,14 +100,29 @@
                     userSettings[key] = document.getElementById(key).value;
                 }
             }
+            updateController(var error) {
+                var kc = 0.01;
+                var ki = 1;
+                var output = kc * error + kc*ki*(accumulatedError);
+                return output
+            }
+            updateDynamics(var currVal, var controller) {
+                return currVal + 0.05 * Math.pow(controller, 2);
+            }
             function systemDynamics() {
                 // get most recent data points
                 var currVal = data.datasets[0].data.slice(-1)[0]
-                var controller = data.datasets[2].data.slice(-1)[0]
+                var setpoint = data.datasets[1].data.slice(-1)[0]
+                //var controller = data.datasets[2].data.slice(-1)[0]
+                var error = setpoint - currVal;
+                accumulatedError+=error;
+                // calculate controller action
+                var controller = updateController(error);
                 // apply system dynamics
                 // newVal = Math.random()*10;
                 // newVal = currVal + 0.1 * (setPoint - currVal);
-                newVal = currVal + 0.05 * controller
+                // newVal = currVal + 0.05 * controller
+                newVal = updateDynamics(currVal, controller);
                 return newVal
             }
             function addDataPoint() {
