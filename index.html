@@ -22,7 +22,8 @@
         <b>Generic PID Controller Tuner</b>
         </br>
         <label for="maxDataPoints">Number of data points displayed:</label>
-        <input type="number" id="maxDataPoints" name="maxDataPoints" min="1" max="100">
+        <input type="number" id="maxDataPoints" name="maxDataPoints" min="1" max="100" defaultValue="1000">
+        <input type="number" id="setpoint" name="setpoint" min="1" max="100" defaultValue="25">
 
         
     </div>
@@ -33,6 +34,9 @@
             
             var canvas = document.getElementById('chart_canvas');
             var ctx = canvas.getContext('2d');
+            
+            var userSettings = {"maxDataPoints": 1000,
+                                "setPoint": 25};
             
             Chart.defaults.global.defaultFontColor = "#fff";
             
@@ -67,9 +71,15 @@
                     }
                 ]
             };
+            function updateInputValues() {
+                for (var key in userSettings) {
+                    userSettings[key] = document.getElementById(key).value;
+                }
+            }
+            
             function addDataPoint() {
-                maxDataPoints = 1000;
-                setPoint = 25;
+                maxDataPoints = userSettings["maxDataPoints"];
+                setPoint = userSettings["setPoint"];
                 // get most recent data point
                 currVal = data.datasets[0].data.slice(-1)[0]
                 newVal = currVal + 0.1 * (setPoint - currVal);
