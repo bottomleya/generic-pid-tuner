@@ -47,9 +47,9 @@
             
             // initialize user settings
             var userSettings = {"maxDataPoints": 1000,
-                                "setPoint": 25,
+                                "setPoint": 0,
                                 "controller": 0,
-                                "kp": 0.1,
+                                "kp": 0.5,
                                 "ki": 0.01};
             window.onload = function initializeUserSettings() {
                 for (var key in userSettings) {
@@ -132,7 +132,7 @@
                 }
             }
             function updateDynamics(currVal, controller) {
-                return currVal + (-controller + 0.01 * (35 - currVal)) * 0.1;
+                return currVal + (controller + 0.01 * (35 - currVal)) * 0.1;
             }
             function systemDynamics() {
                 // get most recent data points
