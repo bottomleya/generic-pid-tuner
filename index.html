@@ -60,8 +60,13 @@
             };
             function addDataPoint() {
                 maxDataPoints = 100;
+                setPoint = 25;
+                // get most recent data point
+                currVal = data.datasets[0].data.slice(-1)[0]
+                newVal = currVal + 0.01 * (setPoint - currVal);
+                // newVal = Math.random()*10;
                 // add data
-                data.datasets[0].data.push(Math.random()*10);
+                data.datasets[0].data.push(newVal);
                 data.labels.push("");
                 // limit to maximum number of data points
                 if (data.datasets[0].data.length > maxDataPoints) {
@@ -83,7 +88,7 @@
 
             window.setInterval(function(){
                 addDataPoint();
-            }, 500);
+            }, 100);
 
          
         </script>
