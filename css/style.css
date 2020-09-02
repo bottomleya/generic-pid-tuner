@@ -20,7 +20,8 @@ div {
 }
 
 .canvasContainer {
-  position: relative; 
+  position: relative;
+  vertical-align:middle;
 }
 
 .heading {
@@ -46,8 +47,10 @@ img {
   pointer-events: none;
   height: 50%;
   z-index: 2;
-  left: 0px;
   top: 0px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
 }
 
 button {
