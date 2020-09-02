@@ -185,8 +185,8 @@
                         data.labels.shift();
                     }
                 }
-                console.log(data.datasets[0].data.length);
-                console.log(data.datasets[0].data);
+                //console.log(data.datasets[0].data.length);
+                console.log(data.labels.length);
                 // update chart
                 lineChart.data = data;
                 lineChart.update();
@@ -216,7 +216,7 @@
                     startTrending();
                     paused = !paused;
                 } else {
-                    clearInterval();
+                    window.clearInterval();
                 }
             }
             
