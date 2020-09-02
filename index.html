@@ -136,7 +136,8 @@
                     document.getElementById("controller").value = output;
                     return output
                 } else {
-                    return document.getElementById("controller").value;
+                    return userSettings["controller"];
+                    //return document.getElementById("controller").value;
                 }
             }
             function updateDynamics(currVal, controller) {
