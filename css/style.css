@@ -5,7 +5,7 @@ canvas {
   top: 0px;
   left: 0px;
   z-index: 1;
-  position: absolute;
+  position: relative;
 }
 
 canvas:onhover {
@@ -20,12 +20,6 @@ div {
   border-radius: 0px 0px 24px 24px;
 }
 
-.canvasContainer {
-  position: relative;
-  vertical-align: middle;
-  text-align: center;
-  width: 100%;
-}
 
 .heading {
   font-weight:400;
@@ -43,19 +37,6 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-}
-
-img {
-  position: absolute; 
-  pointer-events: none;
-  z-index: 2;
-}
-img.center {
-    display: block;
-    margin: 0 auto;
-}
-img:onhover {
-  cursor:pointer;
 }
 
 button {
