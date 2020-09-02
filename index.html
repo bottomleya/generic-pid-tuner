@@ -232,6 +232,22 @@
             if (!paused) {
                 startTrending();
             }
+            
+            function scaleImage() {
+                var img = document.getElementById("pauseOverlay");
+                var scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+                var w = img.width * scale;
+                var h = img.height * scale;
+                var left = canvas.width / 2 - w / 2;
+                var top = canvas.height / 2 - h / 2;
+                // change style of image
+                img.style.left = left;
+                img.style.top = top;
+                img.style.width = w;
+                img.style.height = h;
+            }
+            
+            scaleImage();
 
          
         </script>
