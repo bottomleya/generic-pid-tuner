@@ -235,20 +235,19 @@
             
             function scaleImage(img) {
                 var scale = Math.min(canvas.width / img.width, canvas.height / img.height);
-                console.log(scale);
                 var w = img.width * scale;
                 var h = img.height * scale;
-                var left = canvas.width / 2 - w / 2;
-                var top = canvas.height / 2 - h / 2;
+                var left = canvas.width / 2 - w / 4;
+                var top = canvas.height / 2 - h / 4;
                 console.log(left);
                 console.log(top);
                 console.log(w);
                 console.log(h);
                 // change style of image
-                img.style.left = left/2+"px";
-                img.style.top = top/2+"px";
-                img.style.width = w/2+"px";
-                img.style.height = h/2+"px";
+                img.style.left = left+"px";
+                img.style.top = top+"px";
+                img.style.width = w/4+"px";
+                img.style.height = h/4+"px";
             }
             
 
