@@ -72,7 +72,7 @@
                         label: "System Dynamics",
                         fill: false,
                         lineTension: 0.5,
-                        borderColor: "rgba(226, 235, 52, 1)",
+                        borderColor: "rgba(226, 235, 52, 0.8)",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
@@ -84,7 +84,7 @@
                         label: "Setpoint",
                         fill: false,
                         lineTension: 0.1,
-                        borderColor: "rgba(52, 235, 232, 1)",
+                        borderColor: "rgba(52, 235, 232, 0.8)",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
@@ -96,7 +96,7 @@
                         label: "Controller",
                         fill: false,
                         lineTension: 0.1,
-                        borderColor: "rgba(168, 50, 50, 1)",
+                        borderColor: "rgba(168, 50, 50, 0.8)",
                         borderCapStyle: 'butt',
                         borderDash: [],
                         borderDashOffset: 0.0,
@@ -161,12 +161,13 @@
                 // read values from user inputs
                 var maxDataPoints = userSettings["maxDataPoints"];
                 var setPoint = userSettings["setPoint"];
-                var controller = userSettings["controller"];
                 // calculate system dynamics
                 var newVal = systemDynamics();
                 // add data
                 data.datasets[0].data.push(newVal);
                 data.datasets[1].data.push(setPoint);
+                // save new controller action
+                var controller = userSettings["controller"];
                 data.datasets[2].data.push(controller);
                 data.labels.push("");
                 // limit to maximum number of data points
