@@ -132,6 +132,7 @@
                 if (!manualOverride) {
                     // calculate controller action using ideal equation
                     var output = -(kp * error + kp*ki*(accumulatedError));
+                    userSettings["controller"] = output;
                     document.getElementById("controller").value = output;
                     return output
                 } else {
@@ -161,13 +162,12 @@
                 // read values from user inputs
                 var maxDataPoints = userSettings["maxDataPoints"];
                 var setPoint = userSettings["setPoint"];
+                var controller = userSettings["controller"];
                 // calculate system dynamics
                 var newVal = systemDynamics();
                 // add data
                 data.datasets[0].data.push(newVal);
                 data.datasets[1].data.push(setPoint);
-                // save new controller action
-                var controller = userSettings["controller"];
                 data.datasets[2].data.push(controller);
                 data.labels.push("");
                 // limit to maximum number of data points
