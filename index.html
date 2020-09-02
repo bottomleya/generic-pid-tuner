@@ -44,13 +44,13 @@
     
     <div class="canvasContainer">
     <canvas id="chart_canvas" onclick="switchTrending()"></canvas>
-    <img src="img/press-play.png">
+    <img src="img/press-play.png" id="pauseOverlay">
     </div>
 
         <script>
             var manualOverride = false;
             var manualOverrideSt = false;
-            var paused = false;
+            var paused = true;
             var canvas = document.getElementById('chart_canvas');
             var ctx = canvas.getContext('2d');
             
@@ -212,11 +212,15 @@
             var intervalID = 0;
             function switchTrending() {
                 if (paused) {
+                    // begin trending
                     startTrending();
                     paused = !paused;
+                    document.getElementById("pauseOverlay").zIndex = "0";
                 } else {
+                    // pause trending
                     window.clearInterval(intervalID);
                     paused = !paused;
+                    document.getElementById("pauseOverlay").zIndex = "2";
                 }
             }
             
@@ -225,7 +229,9 @@
                     addDataPoint();
                 }, 100);
             }
-            startTrending();
+            if (!paused) {
+                startTrending();
+            }
 
          
         </script>
