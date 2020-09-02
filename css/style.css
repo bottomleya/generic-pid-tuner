@@ -48,9 +48,13 @@ img {
   position: absolute; 
   pointer-events: none;
   z-index: 2;
-  margin: auto;
+  max-width: 40%;
+  max-height: 80%;
 }
-
+img.center {
+    display: block;
+    margin: 0 auto;
+}
 img:onhover {
   cursor:pointer;
 }
