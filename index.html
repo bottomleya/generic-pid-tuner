@@ -182,8 +182,8 @@
                 if (data.datasets[0].data.length > maxDataPoints) {
                     for (var i=0; i<data.datasets.length; i++) {
                         data.datasets[i].data.shift();
-                        data.labels.shift();
                     }
+                    data.labels.shift();
                 }
                 //console.log(data.datasets[0].data.length);
                 console.log(data.labels.length);
