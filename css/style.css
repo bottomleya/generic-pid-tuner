@@ -48,10 +48,8 @@ img {
   position: absolute; 
   pointer-events: none;
   z-index: 2;
-  left:0;
-  right:0;
-  top:0;
-  bottom:0;
+  top:20;
+  bottom:20;
 }
 img.center {
     display: block;
