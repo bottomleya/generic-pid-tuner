@@ -24,6 +24,7 @@ div {
   position: relative;
   vertical-align: middle;
   text-align: center;
+  width: 100%;
 }
 
 .heading {
