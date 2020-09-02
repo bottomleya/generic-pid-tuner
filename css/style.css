@@ -55,6 +55,10 @@ img {
   right:100;
 }
 
+img:onhover {
+  cursor:pointer;
+}
+
 button {
   background-color: #808080; 
   color: #d4d4d4;
