@@ -44,16 +44,17 @@
         
     </div>
     
-    <canvas id="chart_canvas"></canvas>
+    <canvas id="chart_canvas" onclick="switchTrending()"></canvas>
         
         <script>
             var manualOverride = false;
             var manualOverrideSt = false;
+            var paused = false;
             var canvas = document.getElementById('chart_canvas');
             var ctx = canvas.getContext('2d');
             
             // initialize user settings
-            var userSettings = {"maxDataPoints": 1000,
+            var userSettings = {"maxDataPoints": 50,
                                 "setPoint": 0,
                                 "controller": 0,
                                 "kp": 1,
@@ -207,10 +208,22 @@
                     }
                 }
             });
-
-            window.setInterval(function(){
-                addDataPoint();
-            }, 100);
+            
+            function switchTrending() {
+                if (paused) {
+                    startTrending();
+                    paused = !paused;
+                } else {
+                    clearInterval();
+                }
+            }
+            
+            function startTrending() {
+                window.setInterval(function(){
+                    addDataPoint();
+                }, 100);
+            }
+            startTrending();
 
          
         </script>
