@@ -5,6 +5,7 @@ canvas {
   top: 0px;
   left: 0px;
   z-index: 1;
+  position: absolute;
 }
 
 canvas:onhover {
@@ -44,7 +45,7 @@ body {
 }
 
 img {
-  position: fixed; 
+  position: absolute; 
   pointer-events: none;
   z-index: 2;
   margin: auto;
