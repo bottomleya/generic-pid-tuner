@@ -42,10 +42,7 @@
         <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
     </div>
     
-    <div class="canvasContainer">
     <canvas id="chart_canvas" onclick="switchTrending()"></canvas>
-    <img src="img/press-play.png" id="pauseOverlay" onload="scaleImage(this)">
-    </div>
 
         <script>
             var manualOverride = false;
@@ -233,22 +230,6 @@
                 startTrending();
             }
             
-            function scaleImage(img) {
-                var scale = Math.min(canvas.width / img.width, canvas.height / img.height);
-                var w = img.width * scale;
-                var h = img.height * scale;
-                var left = canvas.width / 2 - w / 2;
-                var top = canvas.height / 2 - h / 2;
-                console.log(left);
-                console.log(top);
-                console.log(w);
-                console.log(h);
-                // change style of image
-                img.style.left = left+"px";
-                img.style.top = top+"px";
-                img.style.width = w/4+"px";
-                img.style.height = h/4+"px";
-            }
             
 
          
