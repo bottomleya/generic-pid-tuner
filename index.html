@@ -186,7 +186,7 @@
                     }
                 }
                 console.log(data.datasets[0].data.length);
-                console.log(data.datasets[0]);
+                console.log(data.datasets[0].data);
                 // update chart
                 lineChart.data = data;
                 lineChart.update();
@@ -211,6 +211,7 @@
             });
             
             function switchTrending() {
+                console.log("switching trending...");
                 if (paused) {
                     startTrending();
                     paused = !paused;
