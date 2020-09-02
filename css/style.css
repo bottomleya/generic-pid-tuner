@@ -5,6 +5,10 @@ canvas {
   height: 100%;
 }
 
+canvas:onhover {
+  cursor: pointer;
+}
+
 div {
   background: #929292;
   font-family:'Raleway', sans-serif;
