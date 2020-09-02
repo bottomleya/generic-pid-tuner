@@ -49,8 +49,8 @@
             var userSettings = {"maxDataPoints": 1000,
                                 "setPoint": 0,
                                 "controller": 0,
-                                "kp": 0.5,
-                                "ki": 0.01};
+                                "kp": 1,
+                                "ki": 1};
             window.onload = function initializeUserSettings() {
                 for (var key in userSettings) {
                     document.getElementById(key).value = userSettings[key];
@@ -132,7 +132,7 @@
                 }
             }
             function updateDynamics(currVal, controller) {
-                return currVal + (-controller + 0.0001 * (35 - currVal)) * 0.1;
+                return currVal + (-controller + 0.1 * (35 - currVal)) * 0.1;
             }
             function systemDynamics() {
                 // get most recent data points
@@ -189,7 +189,8 @@
                         yAxes: [{
                             display: true,
                             ticks: {
-                                suggestedMin: 0//,                                suggestedMax: 100
+                                suggestedMin: 0,
+                                suggestedMax: 10
                             }
                         }]
                     }
