@@ -35,6 +35,12 @@ body {
   user-select: none;
 }
 
+img {
+  position: absolute; 
+  pointer-events: none;
+  height: 100%;
+}
+
 button {
   background-color: #808080; 
   color: #d4d4d4;
