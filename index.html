@@ -146,15 +146,11 @@
                 // get most recent data points
                 var currVal = data.datasets[0].data.slice(-1)[0]
                 var setpoint = data.datasets[1].data.slice(-1)[0]
-                //var controller = data.datasets[2].data.slice(-1)[0]
                 var error = setpoint - currVal;
                 accumulatedError+=error;
                 // calculate controller action
                 var updatedController = updateController(error);
                 // apply system dynamics
-                // newVal = Math.random()*10;
-                // newVal = currVal + 0.1 * (setPoint - currVal);
-                // newVal = currVal + 0.05 * controller
                 newVal = updateDynamics(currVal, updatedController);
                 return newVal
             }
@@ -177,6 +173,7 @@
                         data.labels.shift();
                     }
                 }
+                console.log(data.datasets[0].data.length);
                 // update chart
                 lineChart.data = data;
                 lineChart.update();
