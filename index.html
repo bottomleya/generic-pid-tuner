@@ -28,8 +28,8 @@
         <input type="number" id="setPoint" name="setPoint" min="1" max="100" >
         </br>
         <label for="controller">Controller:</label>
-        <input type="number" id="controller" name="controller" min="0" max="100"  disabled=true>
         <input type="checkbox" id="manaulOverride" name="manualOverride" onclick="overrideController()">
+        <input type="number" id="controller" name="controller" min="0" max="100"  disabled=true>
         <label for="kp">Proportional Gain:</label>
         <input type="number" id="kp" name="kp" min="0" max="1">
         <label for="ki">Integral Gain:</label>
@@ -44,6 +44,7 @@
         
         <script>
             var manualOverride = false;
+            var manualOverrideSt = false;
             var canvas = document.getElementById('chart_canvas');
             var ctx = canvas.getContext('2d');
             
@@ -105,18 +106,22 @@
                     }
                 ]
             };
+            // onclick function for submit changes button
             function updateInputValues() {
+                // update user settings
                 for (var key in userSettings) {
                     userSettings[key] = document.getElementById(key).value;
                 }
+                // update manual override switch
+                manualOverride = manualOverrideSt;
+                document.getElementById("controller").disabled = !manualOverrideSt;
             }
+            // onclick checkbox function for switching the manual override status
             function overrideController() {
-                if (manualOverride) {
-                    manualOverride = false;
-                    document.getElementById("controller").disabled = true;
+                if (manualOverrideSt) {
+                    manualOverrideSt = false;
                 } else {
-                    manualOverride = true;
-                    document.getElementById("controller").disabled = false;
+                    manualOverrideSt = true;
                 };
                 
             }
@@ -157,14 +162,12 @@
                 var maxDataPoints = userSettings["maxDataPoints"];
                 var setPoint = userSettings["setPoint"];
                 var controller = userSettings["controller"];
-                data.datasets[1].data.push(setPoint);
-                data.datasets[2].data.push(controller);
-                console.log(controller);
                 // calculate system dynamics
                 var newVal = systemDynamics();
-                console.log(controller);
                 // add data
                 data.datasets[0].data.push(newVal);
+                data.datasets[1].data.push(setPoint);
+                data.datasets[2].data.push(controller);
                 data.labels.push("");
                 // limit to maximum number of data points
                 if (data.datasets[0].data.length > maxDataPoints) {
