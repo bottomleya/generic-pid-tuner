@@ -42,7 +42,7 @@
         <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
     </div>
     
-    <div>
+    <div class="canvasContainer">
     <canvas id="chart_canvas" onclick="switchTrending()"></canvas>
     <img src="img/press-play.png">
     </div>
@@ -186,8 +186,6 @@
                     }
                     data.labels.shift();
                 }
-                //console.log(data.datasets[0].data.length);
-                console.log(data.labels.length);
                 // update chart
                 lineChart.data = data;
                 lineChart.update();
