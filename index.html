@@ -34,6 +34,8 @@
         <input type="number" id="kp" name="kp" min="0" max="1">
         <label for="ki">Integral Gain:</label>
         <input type="number" id="ki" name="ki" min="0" max="1">
+        </br>
+        <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
 
         
     </div>
@@ -148,16 +150,13 @@
                 // newVal = currVal + 0.1 * (setPoint - currVal);
                 // newVal = currVal + 0.05 * controller
                 newVal = updateDynamics(currVal, updatedController);
-                console.log(newVal);
                 return newVal
             }
             function addDataPoint() {
                 // read values from user inputs
-                updateInputValues();
                 var maxDataPoints = userSettings["maxDataPoints"];
                 var setPoint = userSettings["setPoint"];
                 var controller = userSettings["controller"];
-                console.log(userSettings);
                 data.datasets[1].data.push(setPoint);
                 data.datasets[2].data.push(controller);
                 console.log(controller);
