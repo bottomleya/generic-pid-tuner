@@ -49,10 +49,6 @@ img {
   pointer-events: none;
   z-index: 2;
   margin: auto;
-  top:100;
-  bottom:100;
-  left:100;
-  right:100;
 }
 
 img:onhover {
