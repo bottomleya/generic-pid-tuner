@@ -215,12 +215,12 @@
                     // begin trending
                     startTrending();
                     paused = !paused;
-                    document.getElementById("pauseOverlay").zIndex = "0";
+                    document.getElementById("pauseOverlay").style.zIndex = "0";
                 } else {
                     // pause trending
                     window.clearInterval(intervalID);
                     paused = !paused;
-                    document.getElementById("pauseOverlay").zIndex = "2";
+                    document.getElementById("pauseOverlay").style.zIndex = "2";
                 }
             }
             
