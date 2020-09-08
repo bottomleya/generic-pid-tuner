@@ -213,12 +213,13 @@
                     startTrending();
                     paused = !paused;
                     document.getElementById("pauseOverlay").className = "img-unpaused";
-                    document.getElementById("chart_canvas").className = 
+                    document.getElementById("chart_canvas").className = "canvas-unpaused";
                 } else {
                     // pause trending
                     window.clearInterval(intervalID);
                     paused = !paused;
                     document.getElementById("pauseOverlay").className = "img-paused";
+                    document.getElementById("chart_canvas").className = "canvas-paused";
                 }
             }
             
