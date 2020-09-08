@@ -1,17 +1,3 @@
-canvas {
-  background: #525252;
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  top: 0px;
-  left: 0px;
-  z-index: 0;
-}
-
-canvas:hover {
-  cursor: pointer;
-}
-
 div {
   background: #929292;
   font-family:'Raleway', sans-serif;
@@ -39,6 +25,20 @@ div {
 .canvas-paused {
   outline: 10000px solid rgba(255, 255, 255, 0.2);
   outline-offset: -10000px;
+}
+
+canvas {
+  background: #525252;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
+  z-index: 0;
+}
+
+canvas:hover {
+  cursor: pointer;
 }
 
 img {
