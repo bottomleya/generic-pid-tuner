@@ -41,15 +41,20 @@
         </br>
         <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
     </div>
-    <canvas id="chart_canvas" onclick="switchTrending()" class="paused"></canvas>
+    <div class="canvas-wrapper">
+        <div class="canvas-container">
+            <canvas id="chart_canvas" onclick="switchTrending()" class="canvas-paused"></canvas>
+            <img src="img/press-play.png" class="img-paused">
+        </div>
+    </div>
 
         <script>
             var manualOverride = false;
             var manualOverrideSt = false;
             var paused = true;
             var canvas = document.getElementById('chart_canvas');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight; 
+            canvas.width = canvas.parentElement.clientWidth;;
+            canvas.height = canvas.parentElement.clientHeight; 
             var ctx = canvas.getContext('2d');
             
             // initialize user settings
