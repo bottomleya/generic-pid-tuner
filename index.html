@@ -42,7 +42,7 @@
         <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
     </div>
     <canvas id="chart_canvas" onclick="switchTrending()" class="canvas-paused"></canvas>
-    <img src="img/press-play.png" class="img-paused">
+    <img src="img/press-play.png" id="pause-overlay" onclick="switchTrending()" class="img-paused">
 
         <script>
             var manualOverride = false;
@@ -212,7 +212,7 @@
                     // begin trending
                     startTrending();
                     paused = !paused;
-                    document.getElementById("pauseOverlay").style.zIndex = "0";
+                    document.getElementById("pauseOverlay").style.zIndex = "-2";
                 } else {
                     // pause trending
                     window.clearInterval(intervalID);
