@@ -1,10 +1,10 @@
 canvas {
   background: #525252;
-  top: 100px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
   position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0px;
+  left: 0px;
 }
 
 canvas:hover {
@@ -38,6 +38,10 @@ div {
 .canvas-wrapper {
   width: 100%;
   height: 100%;
+  top: 100px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
 }
 
 .canvas-paused {
