@@ -41,14 +41,17 @@
         </br>
         <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
     </div>
-    
+    <div id="canvas_container" class="canvas-container paused">
     <canvas id="chart_canvas" onclick="switchTrending()"></canvas>
+    </div>
 
         <script>
             var manualOverride = false;
             var manualOverrideSt = false;
             var paused = true;
             var canvas = document.getElementById('chart_canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight; 
             var ctx = canvas.getContext('2d');
             
             // initialize user settings
