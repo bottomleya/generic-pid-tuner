@@ -59,11 +59,11 @@ img:hover {
 }
 
 .img-paused {
-  z-index: 1;
+  visibility: visible;
 }
 
 .img-unpaused {
-  z-index: -1; 
+  visibility: hidden; 
 }
 
 body { 
