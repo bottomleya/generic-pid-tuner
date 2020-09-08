@@ -34,8 +34,8 @@ div {
 }
 
 .paused {
-  outline: 100px solid rgba(255, 0, 0, 0.5);
-  outline-offset: -100px;
+  outline: 10000px solid rgba(255, 255, 255, 0.2);
+  outline-offset: -10000px;
 }
 
 body { 
