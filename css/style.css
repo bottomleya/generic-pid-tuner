@@ -43,8 +43,10 @@ img {
   width: 200px;
   height: 200px;
   position: absolute;
-  left: calc(50%-100px);
-  top: calc(50%-100px); 
+  left: calc(50% - 100px);
+  left: -webkit-calc(50% - 100px);
+  top: calc(50% - 100px); 
+  top: -webkit-calc(50% - 100px);
   z-index: 1;
 }
 
