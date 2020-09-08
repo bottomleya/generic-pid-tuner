@@ -31,11 +31,22 @@ div {
   height: 100%;
   margin: 0;
   padding: 0;
+  position: relative;
 }
 
-.paused {
+.canvas-wrapper {
+  
+}
+
+.canvas-paused {
   outline: 10000px solid rgba(255, 255, 255, 0.2);
   outline-offset: -10000px;
+}
+
+.img-paused {
+  width: 100%;
+  height: 100%;
+  position: absolute;
 }
 
 body { 
