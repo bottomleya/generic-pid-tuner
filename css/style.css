@@ -27,6 +27,11 @@ div {
   outline-offset: -10000px;
 }
 
+.canvas-unpased {
+  outline: 0px;
+  outline-offset: 0px;
+}
+
 canvas {
   background: #525252;
   position: absolute;
