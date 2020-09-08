@@ -30,8 +30,6 @@ div {
 canvas {
   background: #525252;
   position: absolute;
-  height: 200px;
-  width: 200px;
   top: 0px;
   left: 0px;
   z-index: 0;
@@ -45,8 +43,8 @@ img {
   width: 200px;
   height: 200px;
   position: absolute;
-  left: 0;
-  top: 0; 
+  left: calc(50%-100px);
+  top: calc(50%-100px); 
   z-index: 1;
 }
 
