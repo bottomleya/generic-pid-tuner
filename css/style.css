@@ -23,7 +23,7 @@ div {
 }
 
 .canvas-paused {
-  outline: 10000px solid rgba(255, 255, 255, 0.2);
+  outline: 10000px solid rgba(0, 0, 0, 0.2);
   outline-offset: -10000px;
 }
 
@@ -48,6 +48,10 @@ img {
   top: calc(50vh - 100px); 
   top: -webkit-calc(50vh - 100px);
   z-index: 1;
+}
+
+img:hover {
+  cursor: pointer;
 }
 
 .img-paused {
