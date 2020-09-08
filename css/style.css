@@ -30,8 +30,8 @@ div {
 canvas {
   background: #525252;
   position: absolute;
-  height: 100%;
-  width: 100%;
+  height: 200px;
+  width: 200px;
   top: 0px;
   left: 0px;
   z-index: 0;
@@ -42,8 +42,8 @@ canvas:hover {
 }
 
 img {
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   position: absolute;
   left: 0;
   top: 0; 
