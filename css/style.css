@@ -12,7 +12,7 @@ div {
   line-height:1.7;
   padding: 10px;
   height: 100px;
-  positive: absolute;
+  position: absolute;
   z-index: 1;
 }
 
