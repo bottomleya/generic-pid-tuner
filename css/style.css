@@ -12,6 +12,8 @@ div {
   line-height:1.7;
   padding: 10px;
   height: 100px;
+  positive: absolute;
+  z-index: 1;
 }
 
 .canvas-container {
