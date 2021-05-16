@@ -12,6 +12,8 @@ div {
   line-height:1.7;
   padding: 10px;
   height: 100px;
+  left: 0px;
+  right: 0px;
   position: absolute;
   z-index: 1;
 }
