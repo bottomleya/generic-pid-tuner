@@ -149,7 +149,7 @@
             }
             // onclick function for opening menu
             function openMenu() {
-                var c = document.getElementById("menu").childNodes;
+                var c = document.getElementById("menu").querySelectorAll("*");
                 for(i = 0; i < c.length ; i++) {
                     if (c[i].id == "openArrow") {
                         c[i].classList.add("hidden");
@@ -166,7 +166,7 @@
             }            
             // onclick function for closing/minimizing menu
             function closeMenu() {
-                var c = document.getElementById("menu").childNodes;
+                var c = document.getElementById("menu").querySelectorAll("*");
                 for(i = 0; i < c.length ; i++) {
                     if (c[i].id == "openArrow") {
                         c[i].classList.add("visible");
