@@ -19,7 +19,7 @@
     </head>
     <body>
     <div id="menu" class="heading">
-        <div className="arrow hidden" id="downArrow" onclick="openMenu(event)">&#x25BC;</div>
+        <div className="hidden" id="downArrow" onclick="openMenu(event)">&#x25BC;</div>
         <b>Generic PID Controller Tuner</b>
         </br>
         <label for="maxDataPoints">No. Of Points:</label>
@@ -41,7 +41,7 @@
         <input type="number" id="min" name="min" min="0" max="1">
         </br>
         <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
-        <div className="arrow" id="upArrow" onclick="closeMenu(event)">&#x25B2;</div>
+        <div className="visible" id="upArrow" onclick="closeMenu(event)">&#x25B2;</div>
     </div>
     <canvas id="chart_canvas" onclick="switchTrending()" class="canvas-paused"></canvas>
     <img src="img/press-play.png" id="pause_overlay" onclick="switchTrending()" class="img-paused">
