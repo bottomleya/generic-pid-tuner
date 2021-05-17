@@ -21,6 +21,12 @@ div {
   transition: visibility 0.4s linear 0s, opacity 300ms;
 }
 
+.setPoint {
+  color: #34ebe8;
+}
+.controller {
+  color: #a83232;
+}
 
 .heading {
   background: #929292;
