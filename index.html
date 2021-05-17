@@ -129,10 +129,14 @@
                 for(i = 0; i < c.length ; i++) {
                     if (c[i].id == "downArrow") {
                         c[i].classList.add("hidden");
+                        c[i].classList.remove("visible");
                     } else {
                         c[i].classList.add("visible");
+                        c[i].classList.remove("hidden");
                     }
                 }
+                document.getElementById("menu").classlist.add("maximised");
+                document.getElementById("menu").classlist.remove("minimised");
             }            
             // onclick function for closing/minimizing menu
             function closeMenu() {
@@ -140,10 +144,14 @@
                 for(i = 0; i < c.length ; i++) {
                     if (c[i].id == "downArrow") {
                         c[i].classList.add("visible");
+                        c[i].classList.remove("hidden");
                     } else {
                         c[i].classList.add("hidden");
+                        c[i].classList.remove("visible");
                     }
                 }
+                document.getElementById("menu").classlist.add("minimised");
+                document.getElementById("menu").classlist.remove("maximised");
             }            
             // onclick checkbox function for switching the manual override status
             function overrideController() {
