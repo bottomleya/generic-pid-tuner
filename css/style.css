@@ -23,9 +23,11 @@ div {
 
 .setPoint {
   color: #34ebe8;
+  font-weight: 900;
 }
 .controller {
   color: #a83232;
+  font-weight: 900;
 }
 
 .heading {
