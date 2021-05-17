@@ -5,6 +5,9 @@ div {
   border-radius: 0px 0px 24px 24px;
 }
 
+.arrow:hover {
+  cursor:pointer;
+}
 
 .hidden {
   visibility: hidden;
