@@ -149,7 +149,7 @@
             function openMenu() {
                 var c = document.getElementById("menu").children;
                 for(i = 0; i < c.length ; i++) {
-                    if (c[i].id == "downArrow") {
+                    if (c[i].id == "openArrow") {
                         c[i].classList.add("hidden");
                         c[i].classList.remove("visible");
                     } else {
@@ -164,7 +164,7 @@
             function closeMenu() {
                 var c = document.getElementById("menu").children;
                 for(i = 0; i < c.length ; i++) {
-                    if (c[i].id == "downArrow") {
+                    if (c[i].id == "openArrow") {
                         c[i].classList.add("visible");
                         c[i].classList.remove("hidden");
                     } else {
