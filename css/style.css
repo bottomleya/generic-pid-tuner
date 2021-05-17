@@ -5,8 +5,14 @@ div {
   border-radius: 0px 24px 24px 0px;
 }
 
+.arrow-container {
+  display: block;
+  text-align: right;  
+}
+
 .arrow: {
   text-align: right;
+  display: inline;
 }
 
 .arrow:hover {
