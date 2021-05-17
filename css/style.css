@@ -15,7 +15,7 @@ div {
 .visible {
   visibility: visible;
   opacity: 1;
-  transition: visibility 0s linear 0s, opacity 300ms;
+  transition: visibility 0s linear 0.4s, opacity 600ms;
 }
 
 
@@ -29,6 +29,7 @@ div {
   position: absolute;
   z-index: 1;
   transition: height 0.4s linear;
+  
 }
 
 .minimised {
