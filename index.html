@@ -135,8 +135,8 @@
                         c[i].classList.remove("hidden");
                     }
                 }
-                document.getElementById("menu").classlist.add("maximised");
-                document.getElementById("menu").classlist.remove("minimised");
+                document.getElementById("menu").classList.add("maximised");
+                document.getElementById("menu").classList.remove("minimised");
             }            
             // onclick function for closing/minimizing menu
             function closeMenu() {
@@ -150,8 +150,8 @@
                         c[i].classList.remove("visible");
                     }
                 }
-                document.getElementById("menu").classlist.add("minimised");
-                document.getElementById("menu").classlist.remove("maximised");
+                document.getElementById("menu").classList.add("minimised");
+                document.getElementById("menu").classList.remove("maximised");
             }            
             // onclick checkbox function for switching the manual override status
             function overrideController() {
