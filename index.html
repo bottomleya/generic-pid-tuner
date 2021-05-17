@@ -22,13 +22,13 @@
         <div class="hidden arrow" id="downArrow" onclick="openMenu(event)">&#x25BC;</div>
         <b>Generic PID Controller Tuner</b>
         </br>
-        <label for="maxDataPoints">No. Of Points:</label>
+        <label for="maxDataPoints">Limit Number of Graphed Points:</label>
         <input type="number" id="maxDataPoints" name="maxDataPoints" min="1" max="1000">
         </br>
-        <label for="setPoint">Set Point:</label>
+        <label class="setPoint" for="setPoint">Set Point:</label>
         <input type="number" id="setPoint" name="setPoint" min="1" max="100" >
         </br>
-        <label for="controller">Controller:</label>
+        <label class="controller" for="controller">Controller:</label>
         <input type="checkbox" id="manaulOverride" name="manualOverride" onclick="overrideController()">
         <input type="number" id="controller" name="controller" min="0" max="100"  disabled=true>
         <label for="kp">Proportional Gain:</label>
