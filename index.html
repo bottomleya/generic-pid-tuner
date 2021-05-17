@@ -127,7 +127,7 @@
             function openMenu() {
                 var c = document.getElementById("menu").children;
                 for(i = 0; i < c.length ; i++) {
-                    if !(c[i].id == "downArrow") {
+                    if (c[i].id != "downArrow") {
                         c[i].style.display = "inline";
                     } else {
                         c[i].style.display = "none";   
@@ -138,7 +138,7 @@
             function closeMenu() {
                 var c = document.getElementById("menu").children;
                 for(i = 0; i < c.length ; i++) {
-                    if !(c[i].id == "upArrow") {
+                    if (c[i].id != "upArrow") {
                         c[i].style.display = "none";
                     } else {
                         c[i].style.display = "inline";
