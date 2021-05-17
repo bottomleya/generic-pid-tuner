@@ -22,8 +22,8 @@
         <div class="hidden arrow" id="downArrow" onclick="openMenu(event)">&#x25BC;</div>
         <b>Generic PID Controller Tuner</b>
         </br>
-        <label for="maxDataPoints">Limit Number of Graphed Points:</label>
-        <input type="number" id="maxDataPoints" name="maxDataPoints" min="1" max="1000">
+        <input type="number" id="maxDataPoints" name="maxDataPoints" min="1" max="1000"></br>
+        <label for="maxDataPoints">Limit of Graphed Points:</label>
         </br>
         <label class="setPoint" for="setPoint">Set Point:</label>
         <input type="number" id="setPoint" name="setPoint" min="1" max="100" >
@@ -31,22 +31,22 @@
         <label class="controller" for="controller">Controller:</label>
         <input type="checkbox" id="manaulOverride" name="manualOverride" onclick="overrideController()">
         <input type="number" id="controller" name="controller" min="0" max="100"  disabled=true>
+        <input type="number" id="kp" name="kp" min="0" max="1"></br>
         <label for="kp">Proportional Gain:</label>
-        <input type="number" id="kp" name="kp" min="0" max="1">
+        <input type="number" id="ki" name="ki" min="0" max="1"></br>
         <label for="ki">Integral Gain:</label>
-        <input type="number" id="ki" name="ki" min="0" max="1">
+        <input type="number" id="max" name="max" min="0" max="1"></br>
         <label for="max">Max:</label>
-        <input type="number" id="max" name="max" min="0" max="1">
+        <input type="number" id="min" name="min" min="0" max="1"></br>
         <label for="min">Min:</label>
-        <input type="number" id="min" name="min" min="0" max="1">
         </br>
-        <label class="systemDynamics" for="systemDynamics">System Dynamics:</label>
+        <label class="systemDynamics" for="systemDynamics">System Dynamics:</label></br>
+        <input type="number" id="dt" name="dt" min="0" max="1"></br>
         <label for="dt">Simulation Timestep:</label>
-        <input type="number" id="dt" name="dt" min="0" max="1">
+        <input type="number" id="M" name="M" min="0" max="1"></br>
         <label for="M">Constant Offset "M":</label>
-        <input type="number" id="M" name="M" min="0" max="1">
+        <input type="number" id="k" name="k" min="0" max="1"></br>
         <label for="k">Scaling Coefficient "k":</label>
-        <input type="number" id="k" name="k" min="0" max="1">
         </br>
         <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
         <div class="visible arrow" id="upArrow" onclick="closeMenu(event)">&#x25B2;</div>
