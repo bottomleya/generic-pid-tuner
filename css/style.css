@@ -1,7 +1,7 @@
 div {
   font-family:'Raleway', sans-serif;
   color:#121212;
-  text-align: center;
+  text-align: left;
   border-radius: 0px 0px 24px 24px;
 }
 
@@ -39,21 +39,22 @@ div {
   font-weight:400;
   line-height:1.7;
   padding: 10px;
-  height: 280px;
+  height: 150px;
   left: 0px;
-  right: 0px;
+  top: 0px;
+  bottom: 0px;
   position: absolute;
   z-index: 1;
-  transition: height 0.4s linear;
+  transition: width 0.4s linear;
   
 }
 
 .minimised {
-  height: 20px;
+  width: 20px;
 }
 
 .maximised {
-  height: 220px; 
+  width: 150px; 
 }
 
 .canvas-container {
