@@ -14,12 +14,15 @@ div {
   visibility: visible;
 }
 
+.arrow {
+  display:block;
+}
 
 .heading {
   font-weight:400;
   line-height:1.7;
   padding: 10px;
-  height: 100px;
+  height: 200px;
   left: 0px;
   right: 0px;
   position: absolute;
