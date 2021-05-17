@@ -48,7 +48,7 @@
         </br>
         <input type="checkbox" id="manaulOverride" name="manualOverride" onclick="overrideController()">
         <input type="number" id="controller" name="controller" min="0" max="100"  disabled=true>
-        <label for="controller"> - Controller Override/Value</label>
+        <label for="controller"> - Override/Value</label>
         </br>
         <input type="number" id="kp" name="kp" min="0" max="1">
         <label for="kp"> - Proportional Gain</label>
@@ -149,7 +149,7 @@
             }
             // onclick function for opening menu
             function openMenu() {
-                var c = document.getElementById("menu").children;
+                var c = document.getElementById("menu").childNodes;
                 for(i = 0; i < c.length ; i++) {
                     if (c[i].id == "openArrow") {
                         c[i].classList.add("hidden");
@@ -166,7 +166,7 @@
             }            
             // onclick function for closing/minimizing menu
             function closeMenu() {
-                var c = document.getElementById("menu").children;
+                var c = document.getElementById("menu").childNodes;
                 for(i = 0; i < c.length ; i++) {
                     if (c[i].id == "openArrow") {
                         c[i].classList.add("visible");
