@@ -26,6 +26,14 @@ div {
   z-index: 1;
 }
 
+.heading .minimised {
+  height: 20px;
+}
+
+.heading .maximised {
+  height: 220px; 
+}
+
 .canvas-container {
   width: 100%;
   height: 100%;
