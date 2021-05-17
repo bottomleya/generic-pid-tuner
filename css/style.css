@@ -5,6 +5,10 @@ div {
   border-radius: 0px 24px 24px 0px;
 }
 
+.arrow: {
+  text-align: right;
+}
+
 .arrow:hover {
   cursor:pointer;
 }
