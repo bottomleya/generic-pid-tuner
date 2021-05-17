@@ -8,10 +8,14 @@ div {
 
 .hidden {
   visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
 }
 
 .visible {
   visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
 }
 
 
@@ -24,6 +28,7 @@ div {
   right: 0px;
   position: absolute;
   z-index: 1;
+  transition: height 0.4s linear;
 }
 
 .minimised {
