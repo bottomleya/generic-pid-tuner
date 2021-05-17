@@ -55,7 +55,7 @@ div {
 canvas {
   background: #525252;
   position: absolute;
-  top: 100px;
+  top: 20px;
   left: 0px;
   z-index: 0;
 }
