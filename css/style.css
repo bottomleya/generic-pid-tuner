@@ -26,11 +26,11 @@ div {
   z-index: 1;
 }
 
-.heading .minimised {
+.minimised {
   height: 20px;
 }
 
-.heading .maximised {
+.maximised {
   height: 220px; 
 }
 
