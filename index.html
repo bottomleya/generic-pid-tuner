@@ -18,9 +18,9 @@
         
     </head>
     <body>
-    <div class="heading">
-        <div class="collapsedMenu">&#x25BC;</div>
-        <div class="openedMenu">&#x25B2;</div>
+    <div id="menu" class="heading">
+        <div id="downArrow" class="collapsedMenu" onclick="openMenu(event)">&#x25BC;</div>
+        <div id="upArrow" class="openedMenu" onclick="closeMenu(event)">&#x25B2;</div>
         <b>Generic PID Controller Tuner</b>
         </br>
         <label for="maxDataPoints">No. Of Points:</label>
@@ -123,6 +123,28 @@
                 manualOverride = manualOverrideSt;
                 document.getElementById("controller").disabled = !manualOverrideSt;
             }
+            // onclick function for opening menu
+            function openMenu() {
+                var c = document.getElementById("menu").children;
+                for(i = 0; i < c.length ; i++) {
+                    if !(c[i].id == "downArrow") {
+                        c[i].style.display = "inline";
+                    } else {
+                        c[i].style.display = "none";   
+                    }
+                }
+            }            
+            // onclick function for closing/minimizing menu
+            function closeMenu() {
+                var c = document.getElementById("menu").children;
+                for(i = 0; i < c.length ; i++) {
+                    if !(c[i].id == "upArrow") {
+                        c[i].style.display = "none";
+                    } else {
+                        c[i].style.display = "inline";
+                    }
+                }
+            }            
             // onclick checkbox function for switching the manual override status
             function overrideController() {
                 if (manualOverrideSt) {
