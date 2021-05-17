@@ -40,6 +40,14 @@
         <label for="min">Min:</label>
         <input type="number" id="min" name="min" min="0" max="1">
         </br>
+        <label class="systemDynamics" for="systemDynamics">System Dynamics:</label>
+        <label for="dt">Simulation Timestep:</label>
+        <input type="number" id="k" name="k" min="0" max="1">
+        <label for="M">Constant Offset:</label>
+        <input type="number" id="M" name="M" min="0" max="1">
+        <label for="k">Scaling Coefficient:</label>
+        <input type="number" id="k" name="k" min="0" max="1">
+        </br>
         <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
         <div class="visible arrow" id="upArrow" onclick="closeMenu(event)">&#x25B2;</div>
     </div>
@@ -60,7 +68,10 @@
                                 "kp": 1,
                                 "ki": 1,
                                 "max": 10,
-                                "min": -10};
+                                "min": -10,
+                                "dt": 0.05,
+                                "k": 0.1,
+                                "M": 35};
             window.onload = function initializeUserSettings() {
                 for (var key in userSettings) {
                     document.getElementById(key).value = userSettings[key];
@@ -182,7 +193,10 @@
                 }
             }
             function updateDynamics(currVal, controller) {
-                return currVal + (-controller + 0.1 * (35 - currVal)) * 0.1;
+                var dt = userSettings["dt"];
+                var M = userSettings["M"];
+                var k = userSettings["k"];
+                return currVal + (-controller + k * (M - currVal)) * dt;
             }
             function systemDynamics() {
                 // get most recent data points
