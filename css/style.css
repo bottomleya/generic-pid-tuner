@@ -88,8 +88,8 @@ div {
 canvas {
   background: #525252;
   position: absolute;
-  top: 50px;
-  left: 0px;
+  top: 0px;
+  left: 100px;
   z-index: 0;
 }
 
