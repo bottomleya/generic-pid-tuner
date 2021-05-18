@@ -230,8 +230,8 @@
                 var setpoint = data.datasets[1].data.slice(-1)[0]
                 var error = setpoint - currVal;
                 accumulatedError+=error;
-                derivativeError = error - holdError;
-                holdError = error;
+                derivativeError = error - errorHold;
+                errorHold = error;
                 // calculate controller action
                 var updatedController = updateController(error);
                 // apply system dynamics
