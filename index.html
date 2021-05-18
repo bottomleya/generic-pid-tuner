@@ -65,7 +65,7 @@
         <input type="number" id="min" name="min" min="0" max="1">
         <label for="min"> - Min. Signal</label>
         </br>
-        <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes</button>
+        <button id="btnSubmitValues" type="button" href='javascript:void();' onclick="updateInputValues(event)">Submit Changes & Restart Control</button>
     </div>
     <canvas id="chart_canvas" onclick="switchTrending()" class="canvas-paused"></canvas>
     <img src="img/press-play.png" id="pause_overlay" onclick="switchTrending()" class="img-paused">
@@ -86,7 +86,7 @@
                                 "kd": 0.1,
                                 "max": 10,
                                 "min": -10,
-                                "dt": 0.05,
+                                "dt": 0.01,
                                 "k": 0.1,
                                 "M": 35};
             window.onload = function initializeUserSettings() {
@@ -95,7 +95,7 @@
                 }
             }
             var accumulatedError = 0;
-            var derivativeError = 0;
+            var changeInError = 0;
             var errorHold = 0;
             
             Chart.defaults.global.defaultFontColor = "#fff";
@@ -205,9 +205,10 @@
                 var kd = userSettings["kd"];
                 var max = userSettings["max"];
                 var min = userSettings["min"];
+                var dt = userSettings["dt"];
                 if (!manualOverride) {
                     // calculate controller action using ideal equation
-                    var output = -(kp * error + kp*ki*(accumulatedError) + kd*derivativeError);
+                    var output = -(kp * error + kp*ki*(accumulatedError)*dt + kd*changeInError)/dt;
                     if (output > max) {output = max;}
                     if (output < min) {output = min;}
                     userSettings["controller"] = output;
@@ -230,7 +231,7 @@
                 var setpoint = data.datasets[1].data.slice(-1)[0]
                 var error = setpoint - currVal;
                 accumulatedError+=error;
-                derivativeError = error - errorHold;
+                changeInError = error - errorHold;
                 errorHold = error;
                 // calculate controller action
                 var updatedController = updateController(error);
