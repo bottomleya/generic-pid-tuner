@@ -56,6 +56,9 @@
         <input type="number" id="ki" name="ki" min="0" max="1">
         <label for="ki"> - Integral Gain</label>
         </br>
+        <input type="number" id="kd" name="kd" min="0" max="1">
+        <label for="kd"> - Derivative Gain</label>
+        </br>
         <input type="number" id="max" name="max" min="0" max="1">
         <label for="max"> - Max. Signal</label>
         </br>
@@ -80,6 +83,7 @@
                                 "controller": 0,
                                 "kp": 2.5,
                                 "ki": 1.5,
+                                "kd": 0.1,
                                 "max": 10,
                                 "min": -10,
                                 "dt": 0.05,
@@ -91,6 +95,8 @@
                 }
             }
             var accumulatedError = 0;
+            var derivativeError = 0;
+            var errorHold = 0;
             
             Chart.defaults.global.defaultFontColor = "#fff";
             
@@ -146,6 +152,8 @@
                 // update manual override switch
                 manualOverride = manualOverrideSt;
                 document.getElementById("controller").disabled = !manualOverrideSt;
+                // reset accumulated error for integral control
+                accumulatedError = 0;
             }
             // onclick function for opening menu
             function openMenu() {
@@ -194,11 +202,12 @@
             function updateController(error) {
                 var kp = userSettings["kp"];
                 var ki = userSettings["ki"];
+                var kd = userSettings["kd"];
                 var max = userSettings["max"];
                 var min = userSettings["min"];
                 if (!manualOverride) {
                     // calculate controller action using ideal equation
-                    var output = -(kp * error + kp*ki*(accumulatedError));
+                    var output = -(kp * error + kp*ki*(accumulatedError) + kd*derivativeError);
                     if (output > max) {output = max;}
                     if (output < min) {output = min;}
                     userSettings["controller"] = output;
@@ -221,6 +230,8 @@
                 var setpoint = data.datasets[1].data.slice(-1)[0]
                 var error = setpoint - currVal;
                 accumulatedError+=error;
+                derivativeError = error - holdError;
+                holdError = error;
                 // calculate controller action
                 var updatedController = updateController(error);
                 // apply system dynamics
