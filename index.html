@@ -95,6 +95,7 @@
                 }
             }
             var integralTerm = 0;
+            var derivativeTerm = 0;
             var error = 0;
             var errorHold = 0;
             
@@ -215,7 +216,7 @@
                 
                 // calculate derivative term using the 
                 var alpha = 0.1;
-                var derivativeTerm = (1+alpha)/dt*(error - errorHold) - alpha * derivativeTerm;
+                derivativeTerm = (1+alpha)/dt*(error - errorHold) - alpha * derivativeTerm;
                 
                 if (!manualOverride) {
                     // calculate controller action using ideal equation
