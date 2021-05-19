@@ -67,14 +67,6 @@ div {
   width: 250px; 
 }
 
-.canvas-container {
-  width: calc(100%-200px);
-  height: 100%;
-  margin: 0;
-  padding: 50px;
-  position: relative;
-}
-
 .canvas-paused {
   outline: 10000px solid rgba(0, 0, 0, 0.2);
   outline-offset: -10000px;
@@ -89,9 +81,7 @@ canvas {
   background: #525252;
   position: absolute;
   top: 0px;
-  left: 50px;
-  right: 50px;
-  bottom: 0px;
+  left: -50px;
   z-index: 0;
 }
 
