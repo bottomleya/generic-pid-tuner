@@ -207,8 +207,15 @@
                 var min = userSettings["min"];
                 var dt = userSettings["dt"];
                 
+                // calculate integral term using the Backward Difference (BD) Discrete Approximation
                 integralTerm += (error + errorHold)*dt/2;
-                var derivativeTerm = (error - errorHold)/dt;
+                
+                // calculate derivative term using the Backward Difference (BD) Discrete Approximation
+                //var derivativeTerm = (error - errorHold)/dt;
+                
+                // calculate derivative term using the 
+                var alpha = 0.1;
+                var derivativeTerm = (1+alpha)/dt*(error - errorHold) - alpha * derivativeTerm;
                 
                 if (!manualOverride) {
                     // calculate controller action using ideal equation
