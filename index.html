@@ -208,7 +208,7 @@
                 var dt = userSettings["dt"];
                 if (!manualOverride) {
                     // calculate controller action using ideal equation
-                    var output = -(kp * error + kp*ki*(accumulatedError)*dt + kd*changeInError)/dt;
+                    var output = -(kp * error + kp*ki*accumulatedError*dt + kd*changeInError/dt);
                     if (output > max) {output = max;}
                     if (output < min) {output = min;}
                     userSettings["controller"] = output;
