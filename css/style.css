@@ -81,7 +81,7 @@ canvas {
   background: #525252;
   position: absolute;
   top: 0px;
-  left: -50px;
+  left: 0px;
   z-index: 0;
 }
 
