@@ -68,7 +68,7 @@ div {
 }
 
 .canvas-container {
-  width: calc(100%-50px);
+  width: calc(100%-200px);
   height: 100%;
   margin: 0;
   padding: 50px;
