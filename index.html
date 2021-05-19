@@ -94,8 +94,8 @@
                     document.getElementById(key).value = userSettings[key];
                 }
             }
-            var accumulatedError = 0;
-            var changeInError = 0;
+            var integralTerm = 0;
+            var error = 0;
             var errorHold = 0;
             
             Chart.defaults.global.defaultFontColor = "#fff";
@@ -199,16 +199,21 @@
                 
             }
             // calculate controller action for PID controller (ideal)
-            function updateController(error) {
+            function updateController() {
                 var kp = userSettings["kp"];
                 var ki = userSettings["ki"];
                 var kd = userSettings["kd"];
                 var max = userSettings["max"];
                 var min = userSettings["min"];
                 var dt = userSettings["dt"];
+                
+                integralTerm += (error + errorHold)*dt/2;
+                var derivativeTerm = (error - errorHold)/dt;
+                
                 if (!manualOverride) {
                     // calculate controller action using ideal equation
-                    var output = -(kp * error + kp*ki*accumulatedError*dt + kd*changeInError/dt);
+                    //var output = -(kp * error + kp*ki*accumulatedError*dt + kd*changeInError/dt);
+                    var output = -(kp*error + ki*integralTerm + kd*derivativeTerm);
                     if (output > max) {output = max;}
                     if (output < min) {output = min;}
                     userSettings["controller"] = output;
@@ -229,12 +234,10 @@
                 // get most recent data points
                 var currVal = data.datasets[0].data.slice(-1)[0]
                 var setpoint = data.datasets[1].data.slice(-1)[0]
-                var error = setpoint - currVal;
-                accumulatedError+=error;
-                changeInError = error - errorHold;
-                errorHold = error;
+                error = setpoint - currVal;
                 // calculate controller action
-                var updatedController = updateController(error);
+                var updatedController = updateController();
+                errorHold = error;
                 // apply system dynamics
                 newVal = updateDynamics(currVal, updatedController);
                 return newVal
