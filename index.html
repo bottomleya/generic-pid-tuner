@@ -52,17 +52,27 @@
         </br>
         <input type="number" id="kp" name="kp" min="0" max="1">
         <label for="kp"> - Proportional 
-            <select name="propotional" id="proportional_selector">
+            <select name="propotional" id="proportionalSelector">
               <option value="Gain">Gain</option>
               <option value="Band">Band</option>
             </select>
             </label>
         </br>
         <input type="number" id="ki" name="ki" min="0" max="1">
-        <label for="ki"> - Integral Gain</label>
+        <label for="ki"> - Integral 
+            <select name="integral" id="integralSelector">
+              <option value="Gain">Gain</option>
+              <option value="Time">Time</option>
+            </select>
+        </label>
         </br>
         <input type="number" id="kd" name="kd" min="0" max="1">
-        <label for="kd"> - Derivative Gain</label>
+        <label for="kd"> - Derivative 
+            <select name="derivative" id="derivativeSelector">
+              <option value="Gain">Gain</option>
+              <option value="Time">Time</option>
+            </select>
+        </label>
         </br>
         <input type="number" id="max" name="max" min="0" max="1">
         <label for="max"> - Max. Signal</label>
@@ -207,20 +217,25 @@
             // calculate controller action for PID controller (ideal)
             function updateController() {
                 var kp = userSettings["kp"];
-                if (document.getElementById("proportional_selector").value = "Band") {kp = 1/kp;};
+                if (document.getElementById("proportionalSelector").value == "Band" && kp != 0) {
+                    kp = 1/kp;
+                };
                 var ki = userSettings["ki"];
+                if (document.getElementById("integralSelector").value == "Time" && ki != 0 {
+                    ki = 1/ki;
+                };
                 var kd = userSettings["kd"];
+                if (document.getElementById("derivativeSelector").value == "Time" && kd != 0 {
+                    kd = 1/kd;
+                };
                 var max = userSettings["max"];
                 var min = userSettings["min"];
                 var dt = userSettings["dt"];
                 
                 // calculate integral term using the Backward Difference (BD) Discrete Approximation
                 integralTerm += (error + errorHold)*dt/2;
-                
-                // calculate derivative term using the Backward Difference (BD) Discrete Approximation
-                //var derivativeTerm = (error - errorHold)/dt;
-                
-                // calculate derivative term using the 
+                                
+                // calculate derivative term, including low-pass filter
                 var alpha = 0.1;
                 derivativeTerm = (1+alpha)/dt*(error - errorHold) - alpha * derivativeTerm;
                 
